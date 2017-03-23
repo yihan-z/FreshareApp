@@ -9,16 +9,43 @@
 import UIKit
 
 class FirstViewController: UIViewController, GIDSignInUIDelegate {
-
+    
+    
+    @IBOutlet weak var login: UIButton!
+    
+    @IBOutlet weak var register: UIButton!
+    
+    @IBOutlet weak var guest: UIButton!
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     override func viewDidLoad() {
+        
+        
+        
+
         super.viewDidLoad()
         
         GIDSignIn.sharedInstance().uiDelegate = self
+        
+        
+        login.layer.borderWidth = 3.0
+        login.layer.borderColor = UIColor.white.cgColor
+        login.layer.cornerRadius = 22
+        
+        register.layer.borderWidth = 3.0
+        register.layer.borderColor = UIColor.white.cgColor
+        register.layer.cornerRadius = 22
+
+        
+        guest.layer.borderWidth = 3.0
+        guest.layer.borderColor = UIColor.white.cgColor
+        guest.layer.cornerRadius = 28
+
         
         // Uncomment to automatically sign in the user.
         //GIDSignIn.sharedInstance().signInSilently()

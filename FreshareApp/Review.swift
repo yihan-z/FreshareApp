@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Review {
+open class Review {
     
     var username:String = ""
     var review:String = ""

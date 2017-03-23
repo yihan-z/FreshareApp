@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Seller {
+open class Seller {
     
     var name:String = ""
     var picture:String = ""

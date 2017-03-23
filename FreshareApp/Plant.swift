@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Plant {
+open class Plant {
     
     var name:String = ""
     var picture:String = ""
