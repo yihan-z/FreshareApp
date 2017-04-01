@@ -16,13 +16,12 @@
 		E75507CC1E6DD07F00E160CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E75507CA1E6DD07F00E160CE /* Main.storyboard */; };
 		E75507CE1E6DD07F00E160CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E75507CD1E6DD07F00E160CE /* Assets.xcassets */; };
 		E75507D11E6DD07F00E160CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E75507CF1E6DD07F00E160CE /* LaunchScreen.storyboard */; };
-		E75507DC1E6F7C2600E160CE /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507DB1E6F7C2600E160CE /* Plant.swift */; };
-		E75507DE1E6F7C8F00E160CE /* Seller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507DD1E6F7C8F00E160CE /* Seller.swift */; };
-		E75507E01E6F7D6200E160CE /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507DF1E6F7D6200E160CE /* Review.swift */; };
 		E75507E21E6F7EC200E160CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E75507E11E6F7EC200E160CE /* GoogleService-Info.plist */; };
 		E75507EB1E6F874400E160CE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507EA1E6F874400E160CE /* SearchViewController.swift */; };
 		E75507ED1E6F87F000E160CE /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = E75507EC1E6F87F000E160CE /* search.png */; };
 		E75507EF1E6F920A00E160CE /* FarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507EE1E6F920A00E160CE /* FarmViewController.swift */; };
+		E7C2A6CB1E8F34DE00294C0D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C2A6CA1E8F34DE00294C0D /* CoreDataManager.swift */; };
+		E7C2A6CE1E8F34FC00294C0D /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7C2A6CC1E8F34FC00294C0D /* Models.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,14 +38,13 @@
 		E75507CD1E6DD07F00E160CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E75507D01E6DD07F00E160CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E75507D21E6DD07F00E160CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E75507DB1E6F7C2600E160CE /* Plant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
-		E75507DD1E6F7C8F00E160CE /* Seller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seller.swift; sourceTree = "<group>"; };
-		E75507DF1E6F7D6200E160CE /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		E75507E11E6F7EC200E160CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E75507E51E6F83D400E160CE /* FreshareApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FreshareApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		E75507EA1E6F874400E160CE /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E75507EC1E6F87F000E160CE /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		E75507EE1E6F920A00E160CE /* FarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FarmViewController.swift; sourceTree = "<group>"; };
+		E7C2A6CA1E8F34DE00294C0D /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		E7C2A6CD1E8F34FC00294C0D /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +97,7 @@
 			children = (
 				E75507C41E6DD07F00E160CE /* AppDelegate.swift */,
 				E75507E51E6F83D400E160CE /* FreshareApp-Bridging-Header.h */,
-				E75507DA1E6F7BDA00E160CE /* Models */,
+				E75507DA1E6F7BDA00E160CE /* Core Data */,
 				E75507D81E6F7BBD00E160CE /* Controllers */,
 				E75507D91E6F7BCD00E160CE /* Layout */,
 				E75507CD1E6DD07F00E160CE /* Assets.xcassets */,
@@ -133,14 +131,13 @@
 			name = Layout;
 			sourceTree = "<group>";
 		};
-		E75507DA1E6F7BDA00E160CE /* Models */ = {
+		E75507DA1E6F7BDA00E160CE /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				E75507DB1E6F7C2600E160CE /* Plant.swift */,
-				E75507DD1E6F7C8F00E160CE /* Seller.swift */,
-				E75507DF1E6F7D6200E160CE /* Review.swift */,
+				E7C2A6CA1E8F34DE00294C0D /* CoreDataManager.swift */,
+				E7C2A6CC1E8F34FC00294C0D /* Models.xcdatamodeld */,
 			);
-			name = Models;
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,13 +270,12 @@
 				B65747BD1E8265250065E1C1 /* SettingViewController.swift in Sources */,
 				E75507C91E6DD07F00E160CE /* SecondViewController.swift in Sources */,
 				E75507EB1E6F874400E160CE /* SearchViewController.swift in Sources */,
-				E75507DE1E6F7C8F00E160CE /* Seller.swift in Sources */,
 				68B5877D1E80685500398739 /* MapViewController.swift in Sources */,
+				E7C2A6CB1E8F34DE00294C0D /* CoreDataManager.swift in Sources */,
+				E7C2A6CE1E8F34FC00294C0D /* Models.xcdatamodeld in Sources */,
 				B65747BB1E8217A20065E1C1 /* StartViewController.swift in Sources */,
-				E75507DC1E6F7C2600E160CE /* Plant.swift in Sources */,
 				E75507C51E6DD07F00E160CE /* AppDelegate.swift in Sources */,
 				E75507C71E6DD07F00E160CE /* FirstViewController.swift in Sources */,
-				E75507E01E6F7D6200E160CE /* Review.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +444,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E7C2A6CC1E8F34FC00294C0D /* Models.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E7C2A6CD1E8F34FC00294C0D /* Models.xcdatamodel */,
+			);
+			currentVersion = E7C2A6CD1E8F34FC00294C0D /* Models.xcdatamodel */;
+			path = Models.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E75507B91E6DD07F00E160CE /* Project object */;
 }
