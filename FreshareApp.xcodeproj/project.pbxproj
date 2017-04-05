@@ -20,8 +20,8 @@
 		E75507EB1E6F874400E160CE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507EA1E6F874400E160CE /* SearchViewController.swift */; };
 		E75507ED1E6F87F000E160CE /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = E75507EC1E6F87F000E160CE /* search.png */; };
 		E75507EF1E6F920A00E160CE /* FarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507EE1E6F920A00E160CE /* FarmViewController.swift */; };
-		E7C2A6CB1E8F34DE00294C0D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C2A6CA1E8F34DE00294C0D /* CoreDataManager.swift */; };
-		E7C2A6CE1E8F34FC00294C0D /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7C2A6CC1E8F34FC00294C0D /* Models.xcdatamodeld */; };
+		E75750551E957BDC005EFBDC /* Freshare.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E75750531E957BDC005EFBDC /* Freshare.xcdatamodeld */; };
+		E75750581E9580B8005EFBDC /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75750571E9580B8005EFBDC /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,8 +43,8 @@
 		E75507EA1E6F874400E160CE /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E75507EC1E6F87F000E160CE /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		E75507EE1E6F920A00E160CE /* FarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FarmViewController.swift; sourceTree = "<group>"; };
-		E7C2A6CA1E8F34DE00294C0D /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		E7C2A6CD1E8F34FC00294C0D /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
+		E75750541E957BDC005EFBDC /* Freshare.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Freshare.xcdatamodel; sourceTree = "<group>"; };
+		E75750571E9580B8005EFBDC /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +97,7 @@
 			children = (
 				E75507C41E6DD07F00E160CE /* AppDelegate.swift */,
 				E75507E51E6F83D400E160CE /* FreshareApp-Bridging-Header.h */,
+				E75750561E9580A4005EFBDC /* Models */,
 				E75507DA1E6F7BDA00E160CE /* Core Data */,
 				E75507D81E6F7BBD00E160CE /* Controllers */,
 				E75507D91E6F7BCD00E160CE /* Layout */,
@@ -134,10 +135,17 @@
 		E75507DA1E6F7BDA00E160CE /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				E7C2A6CA1E8F34DE00294C0D /* CoreDataManager.swift */,
-				E7C2A6CC1E8F34FC00294C0D /* Models.xcdatamodeld */,
+				E75750531E957BDC005EFBDC /* Freshare.xcdatamodeld */,
 			);
 			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		E75750561E9580A4005EFBDC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E75750571E9580B8005EFBDC /* SearchTableViewCell.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,13 +275,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E75507EF1E6F920A00E160CE /* FarmViewController.swift in Sources */,
+				E75750551E957BDC005EFBDC /* Freshare.xcdatamodeld in Sources */,
 				B65747BD1E8265250065E1C1 /* SettingViewController.swift in Sources */,
 				E75507C91E6DD07F00E160CE /* SecondViewController.swift in Sources */,
 				E75507EB1E6F874400E160CE /* SearchViewController.swift in Sources */,
 				68B5877D1E80685500398739 /* MapViewController.swift in Sources */,
-				E7C2A6CB1E8F34DE00294C0D /* CoreDataManager.swift in Sources */,
-				E7C2A6CE1E8F34FC00294C0D /* Models.xcdatamodeld in Sources */,
 				B65747BB1E8217A20065E1C1 /* StartViewController.swift in Sources */,
+				E75750581E9580B8005EFBDC /* SearchTableViewCell.swift in Sources */,
 				E75507C51E6DD07F00E160CE /* AppDelegate.swift in Sources */,
 				E75507C71E6DD07F00E160CE /* FirstViewController.swift in Sources */,
 			);
@@ -446,13 +454,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E7C2A6CC1E8F34FC00294C0D /* Models.xcdatamodeld */ = {
+		E75750531E957BDC005EFBDC /* Freshare.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				E7C2A6CD1E8F34FC00294C0D /* Models.xcdatamodel */,
+				E75750541E957BDC005EFBDC /* Freshare.xcdatamodel */,
 			);
-			currentVersion = E7C2A6CD1E8F34FC00294C0D /* Models.xcdatamodel */;
-			path = Models.xcdatamodeld;
+			currentVersion = E75750541E957BDC005EFBDC /* Freshare.xcdatamodel */;
+			path = Freshare.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

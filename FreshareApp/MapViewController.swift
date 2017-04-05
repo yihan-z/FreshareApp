@@ -15,6 +15,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet var mapView: GMSMapView!
     
+    /*
     var locationManager = CLLocationManager()
     
     var didFindMyLocation = false
@@ -85,7 +86,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             mapView.isMyLocationEnabled = true
         }
     }
-    
+    */
     
 }
 
