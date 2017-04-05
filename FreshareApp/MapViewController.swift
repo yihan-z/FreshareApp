@@ -23,7 +23,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     //var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
-    
+    var longitude : Double = -90.301656
+    var latitude : Double = 38.648930
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +35,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         locationManager = CLLocationManager()
       
         locationManager.requestWhenInUseAuthorization()
-        //locationManager.requestAlwaysAuthorization()
+        locationManager.requestAlwaysAuthorization()
        
-        
-        
         
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -57,8 +56,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             print("Error in finding location, did you deny access?")
             //exit()
         }
-        //Todo Put in Optional Check
-        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: currentLocation!.coordinate.latitude, longitude: currentLocation!.coordinate.longitude,                                             zoom: zoomLevel)
+        //Default location (without authorization access) is STL
+        
+        if currentLocation != nil { //TODO Reset
+            print("not nil")
+            longitude = currentLocation!.coordinate.longitude
+            latitude = currentLocation!.coordinate.latitude
+        } else { // STL
+            longitude = -90.301656
+            latitude = 38.648930
+        }
+        
+        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude,  zoom: zoomLevel)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         view = mapView
         
@@ -68,7 +77,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!)
+        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         marker.title = "Your Location"
         marker.snippet = NSLocale.current.regionCode
         marker.map = mapView
