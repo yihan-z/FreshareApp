@@ -32,16 +32,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         //Find current position
         locationManager = CLLocationManager()
-<<<<<<< HEAD
-=======
-      
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
-       
->>>>>>> origin/master
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
+        
+        
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 50
