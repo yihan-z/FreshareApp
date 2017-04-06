@@ -22,6 +22,7 @@
 		E75507EF1E6F920A00E160CE /* FarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507EE1E6F920A00E160CE /* FarmViewController.swift */; };
 		E75750551E957BDC005EFBDC /* Freshare.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E75750531E957BDC005EFBDC /* Freshare.xcdatamodeld */; };
 		E75750581E9580B8005EFBDC /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75750571E9580B8005EFBDC /* SearchTableViewCell.swift */; };
+		E757505A1E959EEC005EFBDC /* FarmDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75750591E959EEC005EFBDC /* FarmDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		E75507EE1E6F920A00E160CE /* FarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FarmViewController.swift; sourceTree = "<group>"; };
 		E75750541E957BDC005EFBDC /* Freshare.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Freshare.xcdatamodel; sourceTree = "<group>"; };
 		E75750571E9580B8005EFBDC /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		E75750591E959EEC005EFBDC /* FarmDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FarmDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				E75507EA1E6F874400E160CE /* SearchViewController.swift */,
 				E75507EE1E6F920A00E160CE /* FarmViewController.swift */,
 				B65747BC1E8265250065E1C1 /* SettingViewController.swift */,
+				E75750591E959EEC005EFBDC /* FarmDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				E75750581E9580B8005EFBDC /* SearchTableViewCell.swift in Sources */,
 				E75507C51E6DD07F00E160CE /* AppDelegate.swift in Sources */,
 				E75507C71E6DD07F00E160CE /* FirstViewController.swift in Sources */,
+				E757505A1E959EEC005EFBDC /* FarmDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,19 +7,36 @@
 //
 
 import UIKit
+import FirebaseAuth
 
+@available(iOS 10.0, *)
 class FarmViewController: UIViewController {
 
-    @IBOutlet weak var ProduceReviewSegment: UISegmentedControl!
+
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     
     @IBOutlet weak var edit_info: UIButton!
-    
-    
     @IBOutlet weak var add_pro: UIButton!
     
+    @IBOutlet weak var farmName: UILabel!
+    @IBOutlet weak var farmAddress: UILabel!
+    
+    @IBOutlet weak var farmPic: UIImageView!
+    
+    @IBOutlet weak var segmentTable: UITableView!
+    
+    @IBOutlet weak var createFarmBtn: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        createFarmBtn.isHidden = false
+        // check if Google/Firebase logged in
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        if appDelegate.signedIn == true || FIRAuth.auth()?.currentUser != nil {
+            // user is logged in
+        } else {
+            //User Not logged in
+        }
         edit_info.layer.borderWidth = 3.0
         edit_info.layer.borderColor = UIColor(red:0.51, green:0.82, blue:0.38, alpha:1.0).cgColor
         edit_info.layer.cornerRadius = 15
@@ -40,6 +57,22 @@ class FarmViewController: UIViewController {
         
         
         
+    }
+    
+    @IBAction func createFarm(_ sender: Any) {
+        segmentControl.isHidden = false
+        
+        edit_info.isHidden = false
+        add_pro.isHidden = false
+        
+        farmName.isHidden = false
+        farmAddress.isHidden = false
+        
+        farmPic.isHidden = false
+        
+        segmentTable.isHidden = false
+        
+        createFarmBtn.isHidden = true
     }
 
     /*

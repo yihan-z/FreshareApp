@@ -86,6 +86,25 @@ class SearchViewController: UIViewController {
     private func setupMessageLabel() {
         messageLabel.text = "There is nothing to display."
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FarmDetailSegue"{
+            
+            let dest = segue.destination as! FarmDetailViewController
+            let index = tableView.indexPathForSelectedRow
+            
+            let farm = fetchedResultsController.object(at: index!)
+            
+            dest.title = farm.name
+            dest.address = farm.address
+            dest.ownerName = farm.owner?.name
+            dest.ownerContact = farm.owner?.phone
+            dest.city = farm.city
+            dest.postal = farm.postal
+            dest.latitude = farm.latitude
+            dest.longitude = farm.longitude
+        }
+    }
 }
 
 @available(iOS 10.0, *)
@@ -112,6 +131,7 @@ extension SearchViewController: UITableViewDataSource {
         
         return cell
     }
+
     
 }
 

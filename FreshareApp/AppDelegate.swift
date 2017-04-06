@@ -17,8 +17,8 @@ import GooglePlaces
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     var window: UIWindow?
+    var signedIn:Bool = false
     
-    //let coreDataManager = CoreDataManager(modelName: "Models")
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Freshare")
@@ -229,7 +229,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             let givenName = user.profile.givenName
             let familyName = user.profile.familyName
             let email = user.profile.email
-            // ...
+            if user.profile.hasImage {
+                let pic = user.profile.imageURL(withDimension: 64)
+            }
+            signedIn = true
         } else {
             print("\(error.localizedDescription)")
         }
