@@ -10,6 +10,7 @@ import GoogleMaps
 import GooglePlaces
 
 
+@available(iOS 10.0, *)
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet var mapView: GMSMapView!
@@ -32,21 +33,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         //Find current position
         locationManager = CLLocationManager()
-        
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
-        
-        
-        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 50
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
-        
-        
-        
-        
-        
+    
         if(CLLocationManager.authorizationStatus()==CLAuthorizationStatus.authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
             currentLocation = locationManager.location
@@ -74,12 +67,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         
         
-        // Creates a marker in the center of the map.
+        // Creates a marker in the center of the map where you are
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         marker.title = "Your Location"
         marker.snippet = NSLocale.current.regionCode
         marker.map = mapView
+        
+        //Load all farms
+        let farms = CoreDataManager1.fetchFarm()
+        for farm in farms {
+            let farmMarker = GMSMarker()
+            farmMarker.position = CLLocationCoordinate2D(latitude: Double(farm.farmLatitude!), longitude: Double(farm.farmLongitude!)) //Todo optional check
+            farmMarker.title = farm.farmName
+            farmMarker.snippet = farm.farmCity
+            //farmMaker.iconView = UIImage("Image!!!")
+            
+            farmMarker.map = mapView
+            
+        }
         
     }
     
