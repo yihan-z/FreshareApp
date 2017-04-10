@@ -10,7 +10,10 @@ import UIKit
 import CoreData
 
 @available(iOS 10.0, *)
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UISearchBarDelegate {
+    
+    fileprivate var farmArray = [farmItem]()
+    
     
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var tableView: UITableView!
@@ -58,9 +61,51 @@ class SearchViewController: UIViewController {
         setupView()
     }
     
+    fileprivate func setUpSearchBar() {
+        let searchBar = UISearchBar(frame: CGRect(x:0, y:0, width:self.view.bounds.width, height: 65))
+        searchBar.showsScopeBar = true
+        searchBar.scopeButtonTitles = ["Farm Name", "Produce"]
+        searchBar.selectedScopeButtonIndex = 0
+        
+        searchBar.delegate = self
+        
+        self.tableView.tableHeaderView = searchBar
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        guard !searchText.isEmpty else {
+            
+            
+            if searchBar.selectedScopeButtonIndex == 0 {
+                farmArray = CoreDataManager1.fetchFarm()
+                tableView.reloadData()
+                return
+            }
+            else {
+                
+                return
+            }
+        }
+        
+        if searchBar.selectedScopeButtonIndex == 0 {
+            farmArray = CoreDataManager1.fetchFarm(selectedScopeIdx: 0, targetText:searchText)
+            tableView.reloadData()
+            print(searchText)
+        }
+        else {
+            
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateData() {
+        farmArray = CoreDataManager1.fetchFarm()
     }
     
     private func updateView() {
@@ -80,6 +125,19 @@ class SearchViewController: UIViewController {
         
         updateView()
     }
+    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! TableViewCell
+//        
+//        let farmItem = farmArray[indexPath.row]
+//        
+//        cell.imgView.image = UIImage(named:imgItem.imageName!)
+//        cell.nameLabel.text = imgItem.imageName!
+//        cell.byLabel.text = imgItem.imageBy!
+//        cell.yearLabel.text = imgItem.imageYear!
+//        
+//        return cell
+//    }
     
     // MARK: -
     
@@ -105,6 +163,8 @@ class SearchViewController: UIViewController {
             dest.longitude = farm.longitude
         }
     }
+    
+    
 }
 
 @available(iOS 10.0, *)
