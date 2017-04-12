@@ -109,6 +109,7 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="ifQ-3S-kqB" id="HCQ-yP-Gbr"/>
                         <outlet property="messageLabel" destination="M1N-07-f1Z" id="hl7-KF-Hka"/>
+                        <outlet property="searchBar" destination="OtT-f2-9cw" id="VeP-tQ-F8e"/>
                         <outlet property="searchDisplayController" destination="EUS-zH-kfS" id="WGh-Oy-UbA"/>
                         <outlet property="tableView" destination="1uR-4d-1Vr" id="TTR-Sy-X6x"/>
                     </connections>

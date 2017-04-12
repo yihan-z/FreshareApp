@@ -15,6 +15,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     fileprivate var farmArray = [farmItem]()
     
     
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var category: UISegmentedControl!
     @IBOutlet var messageLabel: UILabel!
