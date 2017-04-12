@@ -182,7 +182,7 @@ class CoreDataManager1: NSObject {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
         
         do {
-            print("deleting all contents")
+            print("deleting contents")
             try getContext().execute(deleteRequest)
         } catch {
             print(error.localizedDescription)
