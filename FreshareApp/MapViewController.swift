@@ -11,14 +11,11 @@ import GooglePlaces
 
 
 @available(iOS 10.0, *)
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     @IBOutlet var mapView: GMSMapView!
-    
     var locationManager = CLLocationManager()
-    
     var didFindMyLocation = false
-    
     var currentLocation: CLLocation?
     //var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
@@ -30,6 +27,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         
         
+        //CoreDataManager1.storeFarm(address:"300 Bear's Den Doulevard", city:"St. Louis", latitude : 38.644327 , longitude:-90.313625, name: "S40 Sweat Farm", postal: "63110")
+        
+        // CoreDataManager1.storeFarm(address:"30 Sheplert's Drive", city:"St. Louis", latitude : 38.645278 , longitude:-90.309892, name: "Clocktower Community Farm", postal: "63120")
+        
+         //CoreDataManager1.storeFarm(address:"6600 Wash Ave", city:"St. Louis", latitude : 38.652953 , longitude:-90.300472, name: "Greenway Greens", postal: "63130")
         
         //Find current position
         locationManager = CLLocationManager()
@@ -61,8 +63,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude,  zoom: zoomLevel)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView.delegate = self
+        self.mapView.delegate = self
         view = mapView
-        
         view.addObserver(self, forKeyPath: "myLocation", options: NSKeyValueObservingOptions.new, context: nil)
         
         
@@ -81,12 +84,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             farmMarker.position = CLLocationCoordinate2D(latitude: Double(farm.farmLatitude!), longitude: Double(farm.farmLongitude!)) //Todo optional check
             farmMarker.title = farm.farmName
             farmMarker.snippet = farm.farmCity
+            farmMarker.icon = GMSMarker.markerImage(with: UIColor.green)
             //farmMaker.iconView = UIImage("Image!!!")
-            
+            //print(farm.farmName)
+            //print(farm.farmLatitude)
+            //print(farm.farmLongitude)
             farmMarker.map = mapView
             
         }
         
+    }
+    
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+     print(marker.title!)
+        print("tapped")
+        
+        //Place link to new farmdetailviewcontroller
+        self.mapView.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
