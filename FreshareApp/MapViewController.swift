@@ -3,7 +3,7 @@
 //  FreshareApp
 //
 //  Created by Labuser on 3/20/17.
-//  Copyright © 2017 ZhuangYihan. All rights reserved.
+//  Copyright © 2017 Eric Chao. All rights reserved.
 //
 import UIKit
 import GoogleMaps
@@ -22,6 +22,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var zoomLevel: Float = 15.0
     var longitude : Double = -90.301656
     var latitude : Double = 38.648930
+    
+    
+    var curFarm : farmItem? = nil
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +89,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             farmMarker.title = farm.farmName
             farmMarker.snippet = farm.farmCity
             farmMarker.icon = GMSMarker.markerImage(with: UIColor.green)
+            farmMarker.userData = farm
             //farmMaker.iconView = UIImage("Image!!!")
             //print(farm.farmName)
             //print(farm.farmLatitude)
@@ -98,8 +103,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
      print(marker.title!)
-        print("tapped")
         
+        curFarm = marker.userData as! farmItem?
+        print("tapped")
+        performSegue(withIdentifier: "MaptoFarm", sender: nil)
         //Place link to new farmdetailviewcontroller
         self.mapView.delegate = self
     }
@@ -114,6 +121,28 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             mapView.isMyLocationEnabled = true
         }
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MaptoFarm"{
+            
+            let dest = segue.destination as! FarmDetailViewController
+        
+            
+            let farm = curFarm
+            
+            dest.title = farm?.farmName
+            dest.address = farm?.farmAddress
+            //            dest.ownerName = farm.owner?.name
+            //            dest.ownerContact = farm.owner?.phone
+            dest.city = farm?.farmCity
+            dest.postal = farm?.farmPostal
+            dest.latitude = farm?.farmLatitude
+            dest.longitude = farm?.farmLongitude
+        }
+    }
+
+    
     
     
 }
