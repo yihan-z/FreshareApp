@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Freshare")
+        let container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -66,24 +66,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             print("found \(fetchedFarms.count)")
             if(fetchedFarms.count == 0) {
                 print("*****populating database******")
-                let uNames = ["Angelica","Eric","Shuya"]
-                let uEmails = ["angelica@freshare.com", "eric@freshare.com", "shuya@freshare.com"]
-                let uPhones = ["3144359876", "3144358765", "3144357654"]
-                
-                let eric = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
-                eric.setValue(uNames[0], forKey: "name")
-                eric.setValue(uEmails[0], forKey: "email")
-                eric.setValue(uPhones[0], forKey: "phone")
+                let uNames = ["Angelica","Eric","Shuya", "Yihan"]
+                let uEmails = ["angelica@freshare.com", "eric@freshare.com","shuya@freshare.com", "yihan@freshare.com"]
+                let uPhones = ["3144359876", "3144358765", "3142295527", "3144350864"]
+                let uImages = ["u1", "u2", "u3", "u4"]
                 
                 let angelica = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
-                angelica.setValue(uNames[1], forKey: "name")
-                angelica.setValue(uEmails[1], forKey: "email")
-                angelica.setValue(uPhones[1], forKey: "phone")
-
+                angelica.setValue(uNames[0], forKey: "name")
+                angelica.setValue(uEmails[0], forKey: "email")
+                angelica.setValue(uPhones[0], forKey: "phone")
+                angelica.setValue(uImages[0], forKey: "image")
+                
+                
+                let eric = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
+                eric.setValue(uNames[1], forKey: "name")
+                eric.setValue(uEmails[1], forKey: "email")
+                eric.setValue(uPhones[1], forKey: "phone")
+                eric.setValue(uImages[1], forKey: "image")
+                
                 let shuya = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
                 shuya.setValue(uNames[2], forKey: "name")
                 shuya.setValue(uEmails[2], forKey: "email")
                 shuya.setValue(uPhones[2], forKey: "phone")
+                shuya.setValue(uImages[2], forKey: "image")
+                
+                let yihan = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
+                yihan.setValue(uNames[3], forKey: "name")
+                yihan.setValue(uEmails[3], forKey: "email")
+                yihan.setValue(uPhones[3], forKey: "phone")
+                yihan.setValue(uImages[3], forKey: "image")
                 
                 do {
                     try context.save()
@@ -95,27 +106,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 let fNames = ["Angelica's Farm","Eric's Ranch","Shuya's Orchard"]
                 let fAddress = ["Fake Address 1", "Fake Address 2", "Fake Address 3"]
                 let fCities = ["St. Louis", "St. Louis", "St. Louis"]
-                let fLats = [48, 48, 48] // please make them make sense
-                let fLongs = [-90, -90, -90] // replace with sensible longitudes
+                let fLats = [38.650544, 38.644575, 38.649555] // please make them make sense
+                let fLongs = [-90.313655, -90.312156, -90.312999] // replace with sensible longitudes
                 let fPosts = ["63110", "63112", "63130"]
+                let fImages:[String] = ["farm1", "farm2", "farm3"]
+
                 
-                let efarm = NSEntityDescription.insertNewObject(forEntityName: "Farm", into: context)
-                efarm.setValue(fNames[0], forKey: "name")
-                efarm.setValue(fAddress[0], forKey: "address")
-                efarm.setValue(fCities[0], forKey: "city")
-                efarm.setValue(fLats[0], forKey: "latitude")
-                efarm.setValue(fLongs[0], forKey: "longitude")
-                efarm.setValue(fPosts[0], forKey: "postal")
-                efarm.setValue(eric, forKey: "owner")
                 
                 let afarm = NSEntityDescription.insertNewObject(forEntityName: "Farm", into: context)
-                afarm.setValue(fNames[1], forKey: "name")
-                afarm.setValue(fAddress[1], forKey: "address")
-                afarm.setValue(fCities[1], forKey: "city")
-                afarm.setValue(fLats[1], forKey: "latitude")
-                afarm.setValue(fLongs[1], forKey: "longitude")
-                afarm.setValue(fPosts[1], forKey: "postal")
+                afarm.setValue(fNames[0], forKey: "name")
+                afarm.setValue(fAddress[0], forKey: "address")
+                afarm.setValue(fCities[0], forKey: "city")
+                afarm.setValue(fLats[0], forKey: "latitude")
+                afarm.setValue(fLongs[0], forKey: "longitude")
+                afarm.setValue(fPosts[0], forKey: "postal")
+                afarm.setValue(fImages[0], forKey: "image")
                 afarm.setValue(angelica, forKey: "owner")
+                
+                let efarm = NSEntityDescription.insertNewObject(forEntityName: "Farm", into: context)
+                efarm.setValue(fNames[1], forKey: "name")
+                efarm.setValue(fAddress[1], forKey: "address")
+                efarm.setValue(fCities[1], forKey: "city")
+                efarm.setValue(fLats[1], forKey: "latitude")
+                efarm.setValue(fLongs[1], forKey: "longitude")
+                efarm.setValue(fPosts[1], forKey: "postal")
+                efarm.setValue(fImages[1], forKey: "image")
+                efarm.setValue(eric, forKey: "owner")
                 
                 let sfarm = NSEntityDescription.insertNewObject(forEntityName: "Farm", into: context)
                 sfarm.setValue(fNames[2], forKey: "name")
@@ -124,6 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 sfarm.setValue(fLats[2], forKey: "latitude")
                 sfarm.setValue(fLongs[2], forKey: "longitude")
                 sfarm.setValue(fPosts[2], forKey: "postal")
+                sfarm.setValue(fImages[2], forKey: "image")
                 sfarm.setValue(shuya, forKey: "owner")
 
                 do {
@@ -135,21 +152,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 
                 let prodNames = ["tomato","lettuce","potato"]
                 let prodPrices = [1.5, 1.6, 1.7]
+                let prodImages = ["prod1", "prod2", "prod3"]
                 
                 let tomato = NSEntityDescription.insertNewObject(forEntityName: "Produce", into: context)
                 tomato.setValue(prodNames[0], forKey: "name")
                 tomato.setValue(prodPrices[0], forKey: "price")
                 tomato.setValue(efarm, forKey: "farm")
-
+                tomato.setValue(prodImages[0], forKey: "image")
+                
                 let lettuce = NSEntityDescription.insertNewObject(forEntityName: "Produce", into: context)
                 lettuce.setValue(prodNames[1], forKey: "name")
                 lettuce.setValue(prodPrices[1], forKey: "price")
                 lettuce.setValue(afarm, forKey: "farm")
+                lettuce.setValue(prodImages[1], forKey: "image")
 
+                
                 let potato = NSEntityDescription.insertNewObject(forEntityName: "Produce", into: context)
                 potato.setValue(prodNames[2], forKey: "name")
                 potato.setValue(prodPrices[2], forKey: "price")
                 potato.setValue(sfarm, forKey: "farm")
+                potato.setValue(prodImages[2], forKey: "image")
 
                 do {
                     try context.save()
@@ -158,8 +180,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     print("There was an error creating produce")
                 }
                 
-                let rContents = ["Love Eric's tomatoes","Love Angelica's lettuce!"]
-                let rStars = [5, 5]
+                let rContents = ["Love Eric's tomatoes!","Love Angelica's lettuce", "Love Shuya's potatoes"]
+                let rStars = [5, 5, 5]
 
                 let sereview = NSEntityDescription.insertNewObject(forEntityName: "Review", into: context)
                 sereview.setValue(rContents[0], forKey: "content")
@@ -172,6 +194,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 sareview.setValue(rStars[1], forKey: "star")
                 sareview.setValue(shuya, forKey: "user")
                 sareview.setValue(afarm, forKey: "target")
+                
+                let ssreview = NSEntityDescription.insertNewObject(forEntityName: "Review", into: context)
+                ssreview.setValue(rContents[2], forKey: "content")
+                ssreview.setValue(rStars[2], forKey: "star")
+                ssreview.setValue(eric, forKey: "user")
+                ssreview.setValue(sfarm, forKey: "target")
 
                 do {
                     try context.save()

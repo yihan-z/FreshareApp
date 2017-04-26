@@ -12,6 +12,7 @@ class SettingViewController: UIViewController {
 
     @IBOutlet weak var logout: UIButton!
     
+    @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,6 +20,13 @@ class SettingViewController: UIViewController {
         logout.layer.borderWidth = 3.0
         logout.layer.borderColor = UIColor.white.cgColor
         logout.layer.cornerRadius = 33
+        
+        imageView.image = UIImage(named: "u4")
+        imageView.layer.borderWidth = 3.0
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2
+        
+        imageView.clipsToBounds = true
 
         // Do any additional setup after loading the view.
     }

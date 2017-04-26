@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../../../Users/MASHUYA/Desktop/untitled folder 3/FreshareApp/customLocation.gpx">
+   </FileRef>
+   <FileRef
       location = "group:customLocation.gpx">
    </FileRef>
    <FileRef

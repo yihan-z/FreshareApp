@@ -57,5 +57,11 @@ class FirstViewController: UIViewController, GIDSignInUIDelegate {
 //    @IBAction func didTapSignOut(sender: AnyObject) {
 //        GIDSignIn.sharedInstance().signOut()
 //    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+        
+    }
 }
 

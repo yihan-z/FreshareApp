@@ -8,7 +8,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
-
+import CoreData
 
 @available(iOS 10.0, *)
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
@@ -24,18 +24,50 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var latitude : Double = 38.648930
     
     
-    var curFarm : farmItem? = nil
+    //var curFarm : farmItem? = nil
+    //var farmArray = [Farm]()
+
+    var curFarm:Farm!
     
+    private let persistentContainer = NSPersistentContainer(name: "Model")
+    fileprivate lazy var fetchedFarmsController: NSFetchedResultsController<Farm> = {
+        
+        let fetchRequest: NSFetchRequest<Farm> = Farm.fetchRequest()
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        // Configure Fetched Results Controller
+        fetchedResultsController.delegate = self
+        
+        return fetchedResultsController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+   
+        //let farms = CoreDataManager1.fetchFarm()
         
-        
-        //CoreDataManager1.storeFarm(address:"300 Bear's Den Doulevard", city:"St. Louis", latitude : 38.644327 , longitude:-90.313625, name: "S40 Sweat Farm", postal: "63110")
-        
-        // CoreDataManager1.storeFarm(address:"30 Sheplert's Drive", city:"St. Louis", latitude : 38.645278 , longitude:-90.309892, name: "Clocktower Community Farm", postal: "63120")
-        
-         //CoreDataManager1.storeFarm(address:"6600 Wash Ave", city:"St. Louis", latitude : 38.652953 , longitude:-90.300472, name: "Greenway Greens", postal: "63130")
+        persistentContainer.loadPersistentStores { (persistentStoreDescription, error) in
+            if let error = error {
+                print("Unable to Load Persistent Store")
+                print("\(error), \(error.localizedDescription)")
+                
+            } else {
+                
+                do {
+                    try self.fetchedFarmsController.performFetch()
+                    print("******performing fetch ...")
+                } catch {
+                    let fetchError = error as NSError
+                    print("Unable to Perform Fetch Request")
+                    print("\(fetchError), \(fetchError.localizedDescription)")
+                }
+                
+            }
+
+        }
         
         //Find current position
         locationManager = CLLocationManager()
@@ -82,29 +114,32 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         marker.map = mapView
         
         //Load all farms
-        let farms = CoreDataManager1.fetchFarm()
+
+        let farms = fetchedFarmsController.fetchedObjects! as [Farm]
+        
+        print("**********\(farms.count)")
+        
         for farm in farms {
             let farmMarker = GMSMarker()
-            farmMarker.position = CLLocationCoordinate2D(latitude: Double(farm.farmLatitude!), longitude: Double(farm.farmLongitude!)) //Todo optional check
-            farmMarker.title = farm.farmName
-            farmMarker.snippet = farm.farmCity
+            farmMarker.position = CLLocationCoordinate2D(latitude: Double(farm.latitude), longitude: Double(farm.longitude)) //Todo optional check
+            farmMarker.title = farm.name
+            farmMarker.snippet = farm.city
             farmMarker.icon = GMSMarker.markerImage(with: UIColor.green)
             farmMarker.userData = farm
+            //farmMarker.icon = UIImage(farm.image)
+            //farmMarker.icon = UIImage(named: farm.image!)
             //farmMaker.iconView = UIImage("Image!!!")
-            //print(farm.farmName)
-            //print(farm.farmLatitude)
-            //print(farm.farmLongitude)
+    
             farmMarker.map = mapView
             
         }
-        
     }
     
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
      print(marker.title!)
         
-        curFarm = marker.userData as! farmItem?
+        curFarm = marker.userData as! Farm?
         print("tapped")
         performSegue(withIdentifier: "MaptoFarm", sender: nil)
         //Place link to new farmdetailviewcontroller
@@ -131,18 +166,46 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             
             let farm = curFarm
             
-            dest.title = farm?.farmName
-            dest.address = farm?.farmAddress
-            //            dest.ownerName = farm.owner?.name
-            //            dest.ownerContact = farm.owner?.phone
-            dest.city = farm?.farmCity
-            dest.postal = farm?.farmPostal
-            dest.latitude = farm?.farmLatitude
-            dest.longitude = farm?.farmLongitude
+//            dest.title = farm?.farmName
+//            dest.address = farm?.farmAddress
+//            //            dest.ownerName = farm.owner?.name
+//            //            dest.ownerContact = farm.owner?.phone
+//            dest.city = farm?.farmCity
+//            dest.postal = farm?.farmPostal
+//            dest.latitude = farm?.farmLatitude
+//            dest.longitude = farm?.farmLongitude
+  
+//            dest.clickedFarm = farm
+            dest.clickedFarm = farm
+//            dest.title = farm?.farmName
+//            dest.address = farm?.farmAddress
+//            //            dest.ownerName = farm.owner?.name
+//            //            dest.ownerContact = farm.owner?.phone
+//            dest.city = farm?.farmCity
+//            dest.postal = farm?.farmPostal
+//            dest.latitude = farm?.farmLatitude
+//            dest.longitude = farm?.farmLongitude
+//            
         }
     }
 
-    
-    
+   func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        
+        print(2)
+        let infoWindow = Bundle.main.loadNibNamed("CustomInfoWindow", owner: self.view, options: nil)!.first! as! CustomInfoWindow
+        print(1)
+        infoWindow.label.text = "\(marker.position.latitude) \(marker.position.longitude)"
+        infoWindow.label.text = marker.title
+        infoWindow.layer.cornerRadius = 10.0
+        let farmInfo : Farm = marker.userData as! Farm
+        infoWindow.label2.text = farmInfo.address
+        infoWindow.imageView.image = UIImage(named: farmInfo.image!)
+        return infoWindow
+    }
+ 
     
 }
+
+@available(iOS 10.0, *)
+extension MapViewController: NSFetchedResultsControllerDelegate {}
+

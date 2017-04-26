@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		680C5A321EB037DC00C0AFC3 /* CustomInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 680C5A311EB037DC00C0AFC3 /* CustomInfoWindow.xib */; };
+		680C5A341EB0389E00C0AFC3 /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680C5A331EB0389E00C0AFC3 /* CustomInfoWindow.swift */; };
 		68B5877D1E80685500398739 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B5877C1E80685500398739 /* MapViewController.swift */; };
 		B0D851191E9B30580071F5C6 /* CoreDataManager1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D851181E9B30580071F5C6 /* CoreDataManager1.swift */; };
+		B6380B011EA77E5F00231CA1 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6380B001EA77E5F00231CA1 /* ReviewTableViewCell.swift */; };
+		B650D8CD1EA50C9000ADC698 /* CreateFarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B650D8CC1EA50C9000ADC698 /* CreateFarmViewController.swift */; };
+		B650D8D31EA718F400ADC698 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B650D8D21EA718F400ADC698 /* RateViewController.swift */; };
 		B65747BB1E8217A20065E1C1 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65747BA1E8217A20065E1C1 /* StartViewController.swift */; };
 		B65747BD1E8265250065E1C1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65747BC1E8265250065E1C1 /* SettingViewController.swift */; };
+		B67CB3C21EAE7C1A005BBFBF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB3C11EAE7C1A005BBFBF /* Constants.swift */; };
+		B67CB3C81EAEF247005BBFBF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB3C71EAEF247005BBFBF /* LoginViewController.swift */; };
+		B67CB3CE1EAF6BE1005BBFBF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB3CD1EAF6BE1005BBFBF /* RegisterViewController.swift */; };
+		B67CB3D01EAF7664005BBFBF /* AddProduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB3CF1EAF7664005BBFBF /* AddProduceViewController.swift */; };
+		B67CB3D21EAF7A13005BBFBF /* AddProduceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67CB3D11EAF7A13005BBFBF /* AddProduceTableViewCell.swift */; };
 		E75507C51E6DD07F00E160CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507C41E6DD07F00E160CE /* AppDelegate.swift */; };
 		E75507C71E6DD07F00E160CE /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507C61E6DD07F00E160CE /* FirstViewController.swift */; };
 		E75507C91E6DD07F00E160CE /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507C81E6DD07F00E160CE /* SecondViewController.swift */; };
@@ -21,18 +31,31 @@
 		E75507EB1E6F874400E160CE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507EA1E6F874400E160CE /* SearchViewController.swift */; };
 		E75507ED1E6F87F000E160CE /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = E75507EC1E6F87F000E160CE /* search.png */; };
 		E75507EF1E6F920A00E160CE /* FarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75507EE1E6F920A00E160CE /* FarmViewController.swift */; };
-		E75750551E957BDC005EFBDC /* Freshare.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E75750531E957BDC005EFBDC /* Freshare.xcdatamodeld */; };
 		E75750581E9580B8005EFBDC /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75750571E9580B8005EFBDC /* SearchTableViewCell.swift */; };
 		E757505A1E959EEC005EFBDC /* FarmDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75750591E959EEC005EFBDC /* FarmDetailViewController.swift */; };
+		E76FF99B1EAD58C3005A6537 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76FF99A1EAD58C3005A6537 /* Utility.swift */; };
+		E76FF99D1EAD58D7005A6537 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76FF99C1EAD58D7005A6537 /* CosmosDistrib.swift */; };
+		E76FF9A21EAD6D70005A6537 /* RBResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76FF9A11EAD6D70005A6537 /* RBResizer.swift */; };
+		E76FF9A81EADAA6E005A6537 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E76FF9A61EADAA6E005A6537 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		680C5A311EB037DC00C0AFC3 /* CustomInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoWindow.xib; sourceTree = "<group>"; };
+		680C5A331EB0389E00C0AFC3 /* CustomInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
 		68B5877C1E80685500398739 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7F74B665F0CA91373C56D79E /* Pods-FreshareApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreshareApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FreshareApp/Pods-FreshareApp.debug.xcconfig"; sourceTree = "<group>"; };
 		885749EE4209FDF4883C454B /* Pods-FreshareApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreshareApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FreshareApp/Pods-FreshareApp.release.xcconfig"; sourceTree = "<group>"; };
 		B0D851181E9B30580071F5C6 /* CoreDataManager1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager1.swift; sourceTree = "<group>"; };
+		B6380B001EA77E5F00231CA1 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		B650D8CC1EA50C9000ADC698 /* CreateFarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateFarmViewController.swift; sourceTree = "<group>"; };
+		B650D8D21EA718F400ADC698 /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		B65747BA1E8217A20065E1C1 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		B65747BC1E8265250065E1C1 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		B67CB3C11EAE7C1A005BBFBF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B67CB3C71EAEF247005BBFBF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B67CB3CD1EAF6BE1005BBFBF /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		B67CB3CF1EAF7664005BBFBF /* AddProduceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProduceViewController.swift; sourceTree = "<group>"; };
+		B67CB3D11EAF7A13005BBFBF /* AddProduceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProduceTableViewCell.swift; sourceTree = "<group>"; };
 		E75507C11E6DD07F00E160CE /* FreshareApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreshareApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75507C41E6DD07F00E160CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E75507C61E6DD07F00E160CE /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -46,9 +69,12 @@
 		E75507EA1E6F874400E160CE /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E75507EC1E6F87F000E160CE /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		E75507EE1E6F920A00E160CE /* FarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FarmViewController.swift; sourceTree = "<group>"; };
-		E75750541E957BDC005EFBDC /* Freshare.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Freshare.xcdatamodel; sourceTree = "<group>"; };
 		E75750571E9580B8005EFBDC /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		E75750591E959EEC005EFBDC /* FarmDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FarmDetailViewController.swift; sourceTree = "<group>"; };
+		E76FF99A1EAD58C3005A6537 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		E76FF99C1EAD58D7005A6537 /* CosmosDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
+		E76FF9A11EAD6D70005A6537 /* RBResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBResizer.swift; sourceTree = "<group>"; };
+		E76FF9A71EADAA6E005A6537 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +125,12 @@
 		E75507C31E6DD07F00E160CE /* FreshareApp */ = {
 			isa = PBXGroup;
 			children = (
+				E76FF99C1EAD58D7005A6537 /* CosmosDistrib.swift */,
 				E75507C41E6DD07F00E160CE /* AppDelegate.swift */,
 				E75507E51E6F83D400E160CE /* FreshareApp-Bridging-Header.h */,
+				E76FF99A1EAD58C3005A6537 /* Utility.swift */,
+				E76FF9A11EAD6D70005A6537 /* RBResizer.swift */,
+				B67CB3C11EAE7C1A005BBFBF /* Constants.swift */,
 				E75750561E9580A4005EFBDC /* Models */,
 				E75507DA1E6F7BDA00E160CE /* Core Data */,
 				E75507D81E6F7BBD00E160CE /* Controllers */,
@@ -124,6 +154,13 @@
 				E75507EE1E6F920A00E160CE /* FarmViewController.swift */,
 				B65747BC1E8265250065E1C1 /* SettingViewController.swift */,
 				E75750591E959EEC005EFBDC /* FarmDetailViewController.swift */,
+				B650D8CC1EA50C9000ADC698 /* CreateFarmViewController.swift */,
+				B650D8D21EA718F400ADC698 /* RateViewController.swift */,
+				B67CB3C71EAEF247005BBFBF /* LoginViewController.swift */,
+				B67CB3CD1EAF6BE1005BBFBF /* RegisterViewController.swift */,
+				B67CB3CF1EAF7664005BBFBF /* AddProduceViewController.swift */,
+				680C5A311EB037DC00C0AFC3 /* CustomInfoWindow.xib */,
+				680C5A331EB0389E00C0AFC3 /* CustomInfoWindow.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -140,8 +177,8 @@
 		E75507DA1E6F7BDA00E160CE /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				E75750531E957BDC005EFBDC /* Freshare.xcdatamodeld */,
 				B0D851181E9B30580071F5C6 /* CoreDataManager1.swift */,
+				E76FF9A61EADAA6E005A6537 /* Model.xcdatamodeld */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -150,6 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				E75750571E9580B8005EFBDC /* SearchTableViewCell.swift */,
+				B6380B001EA77E5F00231CA1 /* ReviewTableViewCell.swift */,
+				B67CB3D11EAF7A13005BBFBF /* AddProduceTableViewCell.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -189,7 +228,7 @@
 				TargetAttributes = {
 					E75507C01E6DD07F00E160CE = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = HNT9H2868U;
+						DevelopmentTeam = 2W8D6GKJRY;
 						LastSwiftMigration = 0820;
 					};
 				};
@@ -219,6 +258,7 @@
 			files = (
 				E75507ED1E6F87F000E160CE /* search.png in Resources */,
 				E75507D11E6DD07F00E160CE /* LaunchScreen.storyboard in Resources */,
+				680C5A321EB037DC00C0AFC3 /* CustomInfoWindow.xib in Resources */,
 				E75507CE1E6DD07F00E160CE /* Assets.xcassets in Resources */,
 				E75507CC1E6DD07F00E160CE /* Main.storyboard in Resources */,
 				E75507E21E6F7EC200E160CE /* GoogleService-Info.plist in Resources */,
@@ -280,17 +320,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B67CB3C81EAEF247005BBFBF /* LoginViewController.swift in Sources */,
 				E75507EF1E6F920A00E160CE /* FarmViewController.swift in Sources */,
-				E75750551E957BDC005EFBDC /* Freshare.xcdatamodeld in Sources */,
+				B67CB3C21EAE7C1A005BBFBF /* Constants.swift in Sources */,
+				E76FF99B1EAD58C3005A6537 /* Utility.swift in Sources */,
 				B65747BD1E8265250065E1C1 /* SettingViewController.swift in Sources */,
 				E75507C91E6DD07F00E160CE /* SecondViewController.swift in Sources */,
+				E76FF99D1EAD58D7005A6537 /* CosmosDistrib.swift in Sources */,
 				B0D851191E9B30580071F5C6 /* CoreDataManager1.swift in Sources */,
 				E75507EB1E6F874400E160CE /* SearchViewController.swift in Sources */,
+				B67CB3CE1EAF6BE1005BBFBF /* RegisterViewController.swift in Sources */,
+				E76FF9A81EADAA6E005A6537 /* Model.xcdatamodeld in Sources */,
 				68B5877D1E80685500398739 /* MapViewController.swift in Sources */,
+				E76FF9A21EAD6D70005A6537 /* RBResizer.swift in Sources */,
 				B65747BB1E8217A20065E1C1 /* StartViewController.swift in Sources */,
+				B67CB3D21EAF7A13005BBFBF /* AddProduceTableViewCell.swift in Sources */,
 				E75750581E9580B8005EFBDC /* SearchTableViewCell.swift in Sources */,
+				680C5A341EB0389E00C0AFC3 /* CustomInfoWindow.swift in Sources */,
+				B67CB3D01EAF7664005BBFBF /* AddProduceViewController.swift in Sources */,
+				B650D8CD1EA50C9000ADC698 /* CreateFarmViewController.swift in Sources */,
 				E75507C51E6DD07F00E160CE /* AppDelegate.swift in Sources */,
 				E75507C71E6DD07F00E160CE /* FirstViewController.swift in Sources */,
+				B6380B011EA77E5F00231CA1 /* ReviewTableViewCell.swift in Sources */,
+				B650D8D31EA718F400ADC698 /* RateViewController.swift in Sources */,
 				E757505A1E959EEC005EFBDC /* FarmDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,10 +463,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = HNT9H2868U;
+				DEVELOPMENT_TEAM = 2W8D6GKJRY;
 				INFOPLIST_FILE = FreshareApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.freshare.cse437.Identifier;
+				PRODUCT_BUNDLE_IDENTIFIER = "freshare-w-map.Identifier";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FreshareApp/FreshareApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -428,10 +480,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = HNT9H2868U;
+				DEVELOPMENT_TEAM = 2W8D6GKJRY;
 				INFOPLIST_FILE = FreshareApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.freshare.cse437.Identifier;
+				PRODUCT_BUNDLE_IDENTIFIER = "freshare-w-map.Identifier";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FreshareApp/FreshareApp-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -462,13 +514,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E75750531E957BDC005EFBDC /* Freshare.xcdatamodeld */ = {
+		E76FF9A61EADAA6E005A6537 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				E75750541E957BDC005EFBDC /* Freshare.xcdatamodel */,
+				E76FF9A71EADAA6E005A6537 /* Model.xcdatamodel */,
 			);
-			currentVersion = E75750541E957BDC005EFBDC /* Freshare.xcdatamodel */;
-			path = Freshare.xcdatamodeld;
+			currentVersion = E76FF9A71EADAA6E005A6537 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

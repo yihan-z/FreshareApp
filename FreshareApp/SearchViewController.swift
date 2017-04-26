@@ -12,8 +12,10 @@ import CoreData
 @available(iOS 10.0, *)
 class SearchViewController: UIViewController, UISearchBarDelegate {
     
-    fileprivate var farmArray = [farmItem]()
     
+    //fileprivate var farmArray = [farmItem]()
+    var farmArray = [Farm]()
+    var produceArray = [Produce]()
     
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -24,10 +26,24 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     
     // setup CoreData fetch control for Farm object
-    private let persistentContainer = NSPersistentContainer(name: "Freshare")
-    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Farm> = {
-
+    private let persistentContainer = NSPersistentContainer(name: "Model")
+    fileprivate lazy var fetchedFarmsController: NSFetchedResultsController<Farm> = {
+        
         let fetchRequest: NSFetchRequest<Farm> = Farm.fetchRequest()
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        // Configure Fetched Results Controller
+        fetchedResultsController.delegate = self
+        
+        return fetchedResultsController
+    }()
+    
+    fileprivate lazy var fetchedProduceController: NSFetchedResultsController<Produce> = {
+        
+        let fetchRequest: NSFetchRequest<Produce> = Produce.fetchRequest()
         
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         
@@ -51,7 +67,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 self.setupView()
                 
                 do {
-                    try self.fetchedResultsController.performFetch()
+                    try self.fetchedFarmsController.performFetch()
+                    try self.fetchedProduceController.performFetch()
                 } catch {
                     let fetchError = error as NSError
                     print("Unable to Perform Fetch Request")
@@ -62,65 +79,33 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             }
         }
         self.searchBar.delegate = self
-//        presetCoreData() // unless core data is deleted, don't invoke again
-        farmArray = CoreDataManager1.fetchFarm()
+        //        presetCoreData() // unless core data is deleted, don't invoke again
+        //farmArray = CoreDataManager1.fetchFarm()
+        
+        farmArray = fetchedFarmsController.fetchedObjects!
+        produceArray = fetchedProduceController.fetchedObjects!
+        
         setupView()
     }
     
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        print("search detected")
-//        guard !searchText.isEmpty else {
-//            
-//            
-//            if category.selectedSegmentIndex == 0 {
-//                farmArray = CoreDataManager1.fetchFarm()
-//                tableView.reloadData()
-//                print("data reload")
-//                return
-//            }
-//            else {
-//                // list by produce - not sure how it would be different 
-//                //    than farms at this point
-//                return
-//            }
-//        }
-//        
-//        if category.selectedSegmentIndex == 0 { // by farm
-//            farmArray = CoreDataManager1.fetchFarm(selectedScopeIdx: 4, targetText:searchText)
-//            print(searchText)
-//            tableView.reloadData()
-//            print("data reload")
-//            print(searchText)
-//        }
-//        else { // search by produce
-//            
-//        }
+//    func presetCoreData() {
+
 //        
 //    }
-    
-    func presetCoreData() {
-        CoreDataManager1.storeFarm(address: "6985 Snow Way Dr", city: "St. Louis", latitude: 38.650544, longitude: -90.313655, name: "village farm", postal: "63130")
-        CoreDataManager1.storeFarm(address: "6515 Wydown Blvd", city: "St. Louis", latitude: 38.644575, longitude: -90.312156, name: "S40 farm", postal: "63105")
-        CoreDataManager1.storeFarm(address: "fake address 1", city: "St. Louis", latitude: -38, longitude: -90, name: "fake farm 001", postal: "63130")
-        CoreDataManager1.storeFarm(address: "fake address 2", city: "St. Louis", latitude: -39, longitude: -90.3, name: "fake farm 002", postal: "63130")
-
-    }
-    
+//    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func updateData() {
-        farmArray = CoreDataManager1.fetchFarm()
+        //farmArray = CoreDataManager1.fetchFarm()
+        farmArray = fetchedFarmsController.fetchedObjects!
+        produceArray = fetchedProduceController.fetchedObjects!
     }
     
     private func updateView() {
-        var hasFarms = false
-        
-        if let farms = fetchedResultsController.fetchedObjects {
-            hasFarms = farms.count > 0
-        }
+        let hasFarms = true
         
         tableView.isHidden = !hasFarms
         messageLabel.isHidden = hasFarms
@@ -129,29 +114,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
     private func setupView() {
         setupMessageLabel()
-//        setUpSearchBar()
-
+        //        setUpSearchBar()
+        
         updateView()
     }
-    
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        
-//        guard !searchText.isEmpty else {
-//            farmArray = CoreDataManager1.fetchFarm()
-//            tableView.reloadData()
-//            return
-//        }
-//        
-//        if category.selectedSegmentIndex == 0 {
-//            farmArray = CoreDataManager1.fetchFarm(selectedScopeIdx: 4, targetText:searchText)
-//            tableView.reloadData()
-//            print(searchText)
-//        }
-//        else {
-//            
-//        }
-//    }
-
     
     // MARK: -
     
@@ -165,47 +131,57 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             let dest = segue.destination as! FarmDetailViewController
             let index = tableView.indexPathForSelectedRow
             
-            let farm = farmArray[index!.row]
-            
-            dest.title = farm.farmName
-            dest.address = farm.farmAddress
-//            dest.ownerName = farm.owner?.name
-//            dest.ownerContact = farm.owner?.phone
-            dest.city = farm.farmCity
-            dest.postal = farm.farmPostal
-            dest.latitude = farm.farmLatitude
-            dest.longitude = farm.farmLongitude
+            if category.selectedSegmentIndex == 0 {
+                // IF (FARM SEGMENT)
+                let farm = farmArray[index!.row]
+                dest.clickedFarm = farm
+            }
+            else {
+                
+                // IF (PRODUCE SEGMENT)
+                let produce = produceArray[index!.row]
+                dest.clickedFarm = produce.farm
+            }
         }
     }
     
+    
+    @IBAction func changeSegment(_ sender: Any) {
+        tableView.reloadData()
+        print("value changed")
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("search detected")
         guard !searchText.isEmpty else {
             
-            
             if category.selectedSegmentIndex == 0 {
-                farmArray = CoreDataManager1.fetchFarm()
+                //                farmArray = CoreDataManager1.fetchFarm()
                 tableView.reloadData()
-                print("data reload")
+                print("farm data reload")
                 return
             }
             else {
-                // list by produce - not sure how it would be different
-                //    than farms at this point
+                
+                tableView.reloadData()
+                print("produce data reload")
                 return
             }
         }
         
-        if category.selectedSegmentIndex == 0 { // by farm
-            farmArray = CoreDataManager1.fetchFarm(selectedScopeIdx: 4, targetText:searchText)
+        if category.selectedSegmentIndex == 0 { // search by farm
+            farmArray = CoreDataManager1.fetchFarmObjects(selectedScopeIdx: 4, targetText:searchText)
             print(searchText)
             tableView.reloadData()
-            print("data reload")
+            print("farm data reload")
             print(searchText)
         }
         else { // search by produce
-            
+            produceArray = CoreDataManager1.fetchProduceObjects(selectedScopeIdx: 0, targetText: searchText)
+            print(searchText)
+            tableView.reloadData()
+            print("produce data reload")
+            print(searchText)
         }
         
     }
@@ -217,9 +193,16 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
 extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        guard let farms = fetchedResultsController.fetchedObjects else { return 0 }
-//        return farms.count
-        return farmArray.count
+
+        if category.selectedSegmentIndex == 0 { // search by farm
+            print(farmArray.count)
+            return farmArray.count
+        }
+        else { // search by produce
+            print(produceArray.count)
+            return produceArray.count
+        }
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -227,19 +210,31 @@ extension SearchViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as? SearchTableViewCell else {
             fatalError("Unexpected Index Path")
         }
-        
-        // Fetch Quote
-//        let farm = fetchedResultsController.object(at: indexPath)
-        let farm = farmArray[indexPath.row]
-        print("fetching indexPath \(indexPath.row)")
-        print("farm has name \(farm.farmName)")
-        // Configure Cell
-        cell.nameLabel.text = farm.farmName
-        cell.detailLabel.text = farm.farmPostal
-        
+
+        if category.selectedSegmentIndex == 0 { // search by farm
+            let farm = farmArray[indexPath.row]
+            print("fetching indexPath \(indexPath.row)")
+            print("farm has name \(farm.name)")
+            // Configure Cell
+            cell.nameLabel.text = farm.name
+            cell.detailLabel.text = farm.postal
+        }
+        else { // search by produce
+            let produce = produceArray[indexPath.row]
+            print("fetching indexPath \(indexPath.row)")
+            print("produce has name \(produce.name)")
+            // Configure Cell
+            cell.nameLabel.text = produce.name
+            cell.detailLabel.text = produce.farm?.name
+        }
+
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 100.0;//Choose your custom row height
+    }
     
 }
 

@@ -16,6 +16,7 @@ struct farmItem {
     var farmLongitude:Float?
     var farmName:String?
     var farmPostal:String?
+    //var farmImage:UIImage?
     
     init() {
         farmAddress = ""
@@ -26,13 +27,14 @@ struct farmItem {
         farmPostal = ""
     }
     
-    init(address:String,city:String,latitude:Float,longitude:Float,name:String,postal:String) {
+    init(address:String,city:String,latitude:Float,longitude:Float,name:String,postal:String ) {
         self.farmAddress = address
         self.farmCity = city
         self.farmLatitude = latitude
         self.farmLongitude = longitude
         self.farmName = name
         self.farmPostal = postal
+        //self.farmImage = image
     }
 }
 
@@ -57,6 +59,7 @@ class CoreDataManager1: NSObject {
         managedObject.setValue(longitude, forKey: "longitude")
         managedObject.setValue(name, forKey: "name")
         managedObject.setValue(postal, forKey: "postal")
+        //managedObject.setValue(image, forKey: "image")
         
         do {
             try context.save()
@@ -163,6 +166,78 @@ class CoreDataManager1: NSObject {
                 array.append(farm)
                 print(farm.farmName!+"\n")
             }
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+        
+        return array
+    }
+    
+    // fetch Farm objects from core data based on predicate
+    // syntax: CoreDataManager1.fetchFarm()
+    class func fetchFarmObjects(selectedScopeIdx:Int?=nil, targetText:String?=nil) -> [Farm] {
+        var array = [Farm]()
+        
+        let fetchRequest:NSFetchRequest<Farm> = Farm.fetchRequest()
+
+        if selectedScopeIdx != nil && targetText != nil{
+            
+            var filterKeyword = ""
+            switch selectedScopeIdx! {
+            case 0:
+                filterKeyword = "address"
+            case 1:
+                filterKeyword = "city"
+            case 2:
+                filterKeyword = "latitude"
+            case 3:
+                filterKeyword = "longitude"
+            case 4:
+                filterKeyword = "name"
+            default:
+                filterKeyword = "postal"
+            }
+            
+            let predicate = NSPredicate(format: "\(filterKeyword) contains[c] %@", targetText!)
+            fetchRequest.predicate = predicate
+        }
+        
+        do {
+            let fetchResult = try getContext().fetch(fetchRequest)
+            array = fetchResult
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+        
+        return array
+    }
+    
+    // fetch Produce objects from core data based on predicate
+    // syntax: CoreDataManager1.fetchProduceObjects()
+    class func fetchProduceObjects(selectedScopeIdx:Int?=nil, targetText:String?=nil) -> [Produce] {
+        var array = [Produce]()
+        
+        let fetchRequest:NSFetchRequest<Produce> = Produce.fetchRequest()
+
+        if selectedScopeIdx != nil && targetText != nil{
+            var filterKeyword = ""
+            switch selectedScopeIdx! {
+            case 0:
+                filterKeyword = "name"
+            case 1:
+                filterKeyword = "price"
+            default:
+                filterKeyword = "name"
+            }
+            let predicate = NSPredicate(format: "\(filterKeyword) contains[c] %@", targetText!)
+            fetchRequest.predicate = predicate
+        }
+        
+        do {
+            let fetchResult = try getContext().fetch(fetchRequest)
+            array = fetchResult
         }
         catch {
             print(error.localizedDescription)
